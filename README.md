@@ -20,7 +20,18 @@ Setup tmpfs with size in megabytes
     $ scripts/setuptmpfs.sh 4096
 
 
-# How to run
+# How to run (helper script runtests.sh can be also used)
+
+Clean the tmpfs/object folder 
+	
+    $ scripts/cleantmpfs.sh
+
+
+Write persistent objects
+
+    $ test/persist_alloc
+
+
 
 
 
