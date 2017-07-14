@@ -17,6 +17,20 @@ unsigned int procid;
 static unsigned size = 1024 * 1024;
 static int total_iterations = 10;
 
+char *getobjname(int id, char *base, char *buffer){
+
+  int len = 0;
+
+	memset(buffer, 0, len);
+	len = strlen(base);
+	memcpy(buffer, base, len);
+	strcat(buffer, "_");
+	snprintf(buffer+strlen(buffer), 8, "%d", id);
+	len = strlen(buffer);
+	buffer[len] = 0;
+  return buffer;
+}
+
 void run_test(void* val)
 {
   register unsigned int i;
@@ -24,6 +38,8 @@ void run_test(void* val)
   struct timeval start, end, null, elapsed, adjusted;
   int rank = 0;
   char *ptr[10];
+  char base[255]="Hello";
+  char buffer[255];
 
   rqst_s rqst;
   nvinit_(BASE_PROC_ID);
@@ -44,10 +60,18 @@ void run_test(void* val)
   gettimeofday(&start, NULL);
   int j =0;
   for (j = 0; j< total_iterations; j++) {
+
     unsigned char s;
-    rqst.id = j+1;
+
+    //rqst.id = j+1;
+    rqst.id = 0;
+
+    //generate name into buffer 
+    getobjname(j, base, buffer);
+
     rqst.pid = rank+1+ BASE_PROC_ID;
-    ptr[j] = (char *)nvalloc_(size,NULL,rqst.id);
+
+    ptr[j] = (char *)nvalloc_(size,buffer,rqst.id);
     for (i = 0; i < size; i++) {
       ptr[j][i] = ptr[j][i] +1;
       s += ptr[j][i];  
