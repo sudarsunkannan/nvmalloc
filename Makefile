@@ -195,10 +195,9 @@ clean:
 install:
 	sudo cp -r $(NVMALLOC_HOME)/pvmobj/*.h /usr/include/
 	sudo cp -r $(NVMALLOC_HOME)/pvmobj/*.h /usr/local/include/
-	sudo cp libnvmchkpt.so /usr/local/lib/
-	sudo cp libnvmchkpt.so /usr/lib/
-	#sudo cp pmem_intel/linux-examples_flex/libpmem/libpmem.so  /usr/lib/
-	#sudo cp pmem_intel/linux-examples_flex/libpmem/libpmem.so  /usr/lib64/
+	sudo cp $(NVMALLOC_HOME)/libnvmchkpt.so /usr/local/lib/
+	sudo cp $(NVMALLOC_HOME)/libnvmchkpt.so /usr/lib/
+
 uninstall:
 	rm -rf libnvmchkpt.*
 	rm -rf /usr/lib64/nvmalloc/lib/libnvmchkpt.so*
