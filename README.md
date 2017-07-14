@@ -32,9 +32,10 @@ Write persistent objects
     $ test/persist_alloc
 
 
+Write first, and read the persistent objects with length
+
+    $ test/nvm_rw_test w
+
+    $ test/nvm_rw_test r
 
 
-
-# Provides pesistent allocation
-
-# uses Intel's NVML for logging

@@ -226,6 +226,7 @@ int copy_chunkoj(chunkobj_s *dest, chunkobj_s *src) {
   dest->length = src->length;
   dest->vma_id = src->vma_id;
   dest->offset = src->offset;
+  dest->commitsz = src->commitsz;
   return 0;
 }
 
@@ -378,7 +379,6 @@ static void update_chunkobj(rqst_s *rqst, mmapobj_s* mmapobj,
 static void clear_chunkobj(chunkobj_s *chunkobj) {
   memset(chunkobj->nv_ptr, chunkobj->length, 0);
 }
-
 
 /*creates mmapobj object.sets object variables to app. value*/
 static chunkobj_s* create_chunkobj(rqst_s *rqst, mmapobj_s* mmapobj) {
@@ -2025,6 +2025,7 @@ int nv_commit_len(rqst_s *rqst, size_t size) {
   if (useCacheFlush) {
 #ifdef _USE_FAKE_NVMAP
     msync(chunk->nv_ptr, chunk->commitsz, MS_SYNC);
+    msync((void*)chunk, sizeof(chunkobj_s), MS_SYNC);
 #else
     flush_cache(chunk->nv_ptr, chunk->commitsz);
 #endif

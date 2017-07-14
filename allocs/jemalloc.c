@@ -901,9 +901,10 @@ label_oom:
 
 #ifdef _USE_SHADOWCOPY
 		assert(rqst->log_ptr);
-#endif // _USE_SHADOWCOPY
-//#endif // _USE_JEALOC_PERSISTONLY
-#endif ////#ifdef _USENVRAM
+#endif
+
+#endif //_USENVRAM
+
 	return (ret);
 }
 
