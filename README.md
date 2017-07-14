@@ -1,7 +1,8 @@
 nvmalloc library - Under development, cleanup, and restructuring phase 
 ---------------------------------------------------------------------
 
-# How to build
+How to build
+------------
 
 To compile the library, you need the following libraries
 
@@ -20,7 +21,8 @@ Setup tmpfs with size in megabytes
     $ scripts/setuptmpfs.sh 4096
 
 
-# How to run (helper script runtests.sh can be also used)
+How to run (helper script runtests.sh can be also used)
+------------------------------------------------------
 
 Clean the tmpfs/object folder 
 	
@@ -45,3 +47,16 @@ Snappy compression example. First generate objects and then read and compress.
     $ scripts/cleantmpfs.sh
     $ test/snappy_test w
     $ test/snappy_test r
+
+
+To DO
+-----
+
+1. Remove unwanted code
+2. Description of different configuration options
+3. Test comparisons for POSIX vs. object storage
+4. Integration with Intel NVML's changed library abstractions
+
+
+
+
