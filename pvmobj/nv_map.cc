@@ -1354,7 +1354,10 @@ proc_s* load_mmapobj(int startidx, int perm, proc_s *proc_obj,
   assert(nv_mmapobj);
   addr = (ULONG)nv_mmapobj;
 
+#ifdef _NVDEBUG
   fprintf(stderr,"proc_obj->pesist_mmaps %u \n", proc_obj->pesist_mmaps);
+#endif
+
   for (idx = 0; idx < proc_obj->pesist_mmaps; idx++) {
     nv_mmapobj = (mmapobj_s*) addr;
     mmapobj = find_mmapobj(nv_mmapobj->vma_id, proc_obj);
@@ -1404,8 +1407,12 @@ proc_s* load_mmapobj(int startidx, int perm, proc_s *proc_obj,
     addr = addr + sizeof(mmapobj_s);
     DEBUG_MMAPOBJ_T(mmapobj);
   }
+
+#ifdef _NVDEBUG
   fprintf(stderr,"nv_procobj->pesist_mmaps %d  proc_obj->pesist_mmaps %d\n",
       nv_procobj->pesist_mmaps, proc_obj->pesist_mmaps);
+#endif
+
   return proc_obj;
 
 err_load_mmapobj:
@@ -1510,7 +1517,7 @@ void* map_nvram_state(rqst_s *rqst) {
   strcat(file_name, fileid_str);
   fd = setup_map_file(file_name, rqst->bytes);
   if (fd == -1) {
-    perror("file open error\n");
+    //perror("file open error\n");
     assert(fd > -1);
   }
   nvmap = mmap_wrap(0, rqst->bytes,
@@ -1856,10 +1863,8 @@ void* _mmap(void *addr, size_t size, int mode, int prot, int fd, int offset,
   strcat(file_name,"_");
   strcat(file_name, fileid_str);
   fd = setup_map_file(file_name, size);
-  if (fd == -1) {
-    perror("file open error\n");
-    assert(fd > -1);
-  }
+  assert(fd > -1);
+
   ret = mmap_wrap(addr, size,PROT_NV_RW, MAP_SHARED , fd, 0, a);
   close(fd);
 #else
@@ -2288,10 +2293,8 @@ void* create_mmap_file(rqst_s *rqst) {
   fprintf(stderr,"creating file %s\n",file_name);
 
   fd = setup_map_file(file_name, rqst->bytes);
-  if (fd == -1) {
-    perror("file open error\n");
-    assert(fd > -1);
-  }
+  assert(fd > -1);
+
   ret = mmap((void *)addr, rqst->bytes,PROT_NV_RW, MAP_SHARED, fd, 0);
   assert(ret);
 

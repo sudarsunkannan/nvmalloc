@@ -26,7 +26,7 @@
 unsigned int procid;
 void run_test(char a);
 static size_t size = 1048576; /* 1MB */
-static int total_iterations = 20000;
+static int numobjs = 1000;
 
 int main(int argc, char *argv[])
 {
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
   MPI_Init (&argc, &argv);
 #endif
 
-  printf("Starting test...\n");
+  //printf("Starting test...\n");
 
   if(!strcmp(argv[1], "w"))
     run_test('w');
@@ -87,7 +87,9 @@ void run_test(char r)
 
   /*Run the real malloc test*/
   gettimeofday(&start, NULL);
-  for (i = 0; i < total_iterations; i++) {
+
+  for (i = 0; i < numobjs; i++) {
+
     bzero(varname,0);
     sprintf(varname,"%d",i);
     strcat(varname,"_");
@@ -98,7 +100,9 @@ void run_test(char r)
       memcpy(buf, src, size);
       buf[size] = 0;
       //printf("Allocated %d objects \n",i);
+
     }else{
+
       isCompress = 1;
 tryagain:
       buf = (char *)nvread_(varname,BASE_PROC_ID);

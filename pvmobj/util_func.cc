@@ -523,9 +523,8 @@ int  check_existing_map_file(char *filepath)
 	int fd;
 
 	fd = open(filepath, O_RDWR, (mode_t) 0666);
-	//fd = posix_fileopen(filepath, "rb+");
 	if (fd == -1) {
-		perror( filepath);
+		//perror( filepath);
 		return -1;
 	}
 	return fd;

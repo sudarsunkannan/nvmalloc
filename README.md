@@ -34,8 +34,14 @@ Write persistent objects
 
 Write first, and read the persistent objects with length
 
+    $ scripts/cleantmpfs.sh
     $ test/nvm_rw_test w
-
     $ test/nvm_rw_test r
 
 
+Snappy compression example. First generate objects and then read and compress.
+
+
+    $ scripts/cleantmpfs.sh
+    $ test/snappy_test w
+    $ test/snappy_test r
