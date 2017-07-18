@@ -18,14 +18,12 @@ CFLAGS := -g -I$(INCLUDE) -Wall -pipe -fvisibility=hidden \
 #LIBS= -ljemalloc -lpthread
 LIBS= -lpthread -L$(NVMALLOC_HOME) -lnvmchkpt
 
-all: persist_alloc nvm_rw_test snappy_test nonpersist_alloc
+all: nvm_rw_test snappy_test nonpersist_alloc
 
 nonpersist_alloc: nonpersist_alloc.cc
 	$(CXX) nonpersist_alloc.cc -o nonpersist_alloc $(CFLAGS) $(CFLAGS_STRICT) $(LIBS)  $(DEFINES)
-persist_alloc: persist_alloc.cc
-	$(CXX) persist_alloc.cc -o persist_alloc  $(CFLAGS) $(LIBS) -I$(INCLUDE) $(DEFINES)
-nvm_rw_test:  nvm_rw_test.cc
-	$(CXX) nvm_rw_test.cc -o nvm_rw_test  $(CFLAGS) $(LIBS) $(DEFINES)
+nvm_rw_test: nvm_rw_test.cc
+	$(CXX) nvm_rw_test.cc -o nvm_rw_test  $(CFLAGS) $(LIBS) -I$(INCLUDE) $(DEFINES)
 snappy_test:  snappy_test.cc
 	$(CXX) snappy_test.cc -o snappy_test  $(CFLAGS) $(LIBS) $(DEFINES) -lsnappy
 nv_read_test:  nv_read_test.cc
@@ -67,7 +65,7 @@ nv_test_spinlock:  nv_test_spinlock.cc
 
 clean:
 	rm -f *.o *.so.0 *.so nv_read_test
-	rm -f persist_alloc nvm_rw_test nonpersist_alloc
+	rm -f nvm_rw_test nvm_rw_test nonpersist_alloc
 	rm -f test_dirtypgcnt test_dirtypgcpy varname_alloc_test
 	rm -f varname_read_test nv_chckpt_test nv_restart_test
 	rm -f nv_remote_chkpt_test nv_rmtckpt_nodirtchk
