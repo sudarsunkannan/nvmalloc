@@ -1,4 +1,4 @@
-nvmalloc library - Under development, cleanup, and restructuring phase 
+nvm object store library (Under cleanup, and restructuring phase)
 ---------------------------------------------------------------------
 
 How to build
