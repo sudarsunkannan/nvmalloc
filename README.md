@@ -28,15 +28,8 @@ Clean the tmpfs/object folder
 	
     $ scripts/cleantmpfs.sh
 
-
-Write persistent objects
-
-    $ test/persist_alloc
-
-
 Write first, and read the persistent objects with length
 
-    $ scripts/cleantmpfs.sh
     $ test/nvm_rw_test w
     $ test/nvm_rw_test r
 
