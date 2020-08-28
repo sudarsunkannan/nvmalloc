@@ -44,15 +44,15 @@ typedef intptr_t nvword_t;
 #define PROT_ANON_PRIV MAP_PRIVATE | MAP_ANONYMOUS
 
 //base name of memory mapped files
-#define FILEPATH "/mnt/pmemdir/chkpt"
-#define BASEPATH "/mnt/pmemdir/"
-#define PROCMETADATA_PATH "/mnt/pmemdir/chkproc"
-#define PROCLOG_PATH "/mnt/pmemdir/logproc"
-#define PROCLOG_DATA_PATH "/mnt/pmemdir/logdataproc"
-#define PROCMAPMETADATA_PATH "/mnt/pmemdir/chkprocmap"
+#define FILEPATH "/mnt/ram/chkpt"
+#define BASEPATH "/mnt/ram/"
+#define PROCMETADATA_PATH "/mnt/ram/chkproc"
+#define PROCLOG_PATH "/mnt/ram/logproc"
+#define PROCLOG_DATA_PATH "/mnt/ram/logdataproc"
+#define PROCMAPMETADATA_PATH "/mnt/ram/chkprocmap"
 /*maps all data when using disk*/
-#define PROCMAPDATAPATH "/mnt/pmemdir/chkprocmapdata"
-#define DATA_PATH "/mnt/pmemdir/procdata"
+#define PROCMAPDATAPATH "/mnt/ram/chkprocmapdata"
+#define DATA_PATH "/mnt/ram/procdata"
 
 #define  SUCCESS 0
 #define  FAILURE -1

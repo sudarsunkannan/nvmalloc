@@ -2,4 +2,4 @@
 
 TMPFS=/mnt/pmemdir
 
-rm -rf $TMPFS
+rm -rf $TMPFS/*
