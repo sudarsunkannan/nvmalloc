@@ -5,7 +5,7 @@
 #include "nv_map.h"
 
 extern int proc_persist_id;
-struct nvmap_arg_struct a;
+extern struct nvmap_arg_struct a;
 unsigned int chunk_id = 1000;
 unsigned int proc_id = 4000;
 #endif

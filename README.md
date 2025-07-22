@@ -8,7 +8,7 @@ To compile the library, you need the following libraries
 
      $ cd nvmalloc
      $ export NVMALLOC_HOME=$PWD
-     $ sudo apt-get install libssl-dev
+     $ sudo apt-get install libssl-dev libsnappy-dev
 
 To build the object library, use sudo if required in your machine
 
